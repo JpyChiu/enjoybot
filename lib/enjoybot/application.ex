@@ -4,6 +4,11 @@ defmodule Enjoybot.Application do
   @moduledoc false
 
   use Application
+  alias Alchemy.Client
+
+  defp load_modules do
+    use Enjoybot.Commands
+  end
 
   @impl true
   def start(_type, _args) do
@@ -11,6 +16,9 @@ defmodule Enjoybot.Application do
       # Starts a worker by calling: Enjoybot.Worker.start_link(arg)
       # {Enjoybot.Worker, arg}
     ]
+
+    Client.start(Application.get_env(:enjoybot, :token))
+    load_modules()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
