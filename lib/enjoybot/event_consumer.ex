@@ -5,8 +5,6 @@ defmodule Enjoybot.EventConsumer do
   alias Nostrum.Api
   alias Enjoybot.EventConsumer.CommandHandler
 
-  @exist_commands ["!ping", "!hello", "!help"]
-
   def start_link do
     Consumer.start_link(__MODULE__)
   end
@@ -19,10 +17,10 @@ defmodule Enjoybot.EventConsumer do
         {:error, :not_command, _} ->
           :ignore
 
-        {:error, :unknown_command, _} ->
+        {:error, :unknown_command, reply} ->
           Api.create_message(
             msg.channel_id,
-            "🚫 unknown command, known subcommands: `#{Enum.join(@exist_commands, ", ")}`"
+            "🚫 unknown command, known subcommands: `#{reply}`"
           )
 
         {:ok, command, args} ->

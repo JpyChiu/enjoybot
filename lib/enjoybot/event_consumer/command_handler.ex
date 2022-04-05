@@ -15,7 +15,7 @@ defmodule Enjoybot.EventConsumer.CommandHandler do
         {:error, :not_command, msg}
 
       command not in @exist_commands ->
-        {:error, :unknown_command, msg}
+        {:error, :unknown_command, Enum.join(@exist_commands, ", ")}
 
       true ->
         {:ok, command, rest}
