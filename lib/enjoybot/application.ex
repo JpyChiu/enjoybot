@@ -10,6 +10,7 @@ defmodule Enjoybot.Application do
     children = [
       # Starts a worker by calling: Enjoybot.Worker.start_link(arg)
       # {Enjoybot.Worker, arg}
+      Enjoybot.EventConsumer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
