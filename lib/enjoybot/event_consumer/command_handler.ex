@@ -2,7 +2,7 @@ defmodule Enjoybot.EventConsumer.CommandHandler do
   @moduledoc false
   alias Nostrum.Api
 
-  @exist_commands ["!ping", "!hello", "!help"]
+  @exist_commands ["!uptime", "!hello", "!help"]
 
   @spec handle_message(Nostrum.Struct.Message.t()) ::
           {:error, :not_command | :unknown_command, Nostrum.Struct.Message.t()}
@@ -23,11 +23,11 @@ defmodule Enjoybot.EventConsumer.CommandHandler do
   end
 
   def fetch_command("!help", [], msg) do
-    Api.create_message(msg.channel_id, "!ping\n!hello")
+    Api.create_message(msg.channel_id, "!uptime\n!hello")
   end
 
-  def fetch_command("!ping", [], msg) do
-    Api.create_message(msg.channel_id, "pyongyang!")
+  def fetch_command("!uptime", [], msg) do
+    Api.create_message(msg.channel_id, "Don't ask me")
   end
 
   def fetch_command("!hello", [], msg) do
