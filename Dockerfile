@@ -13,8 +13,5 @@ COPY lib lib
 COPY test test
 RUN mix compile
 
-ARG BOT_TOKEN
-ENV BOT_TOKEN=$BOT_TOKEN
-
 EXPOSE 4000
 CMD ["mix", "run", "--no-halt"]
