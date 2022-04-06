@@ -2,8 +2,8 @@ defmodule Enjoybot.EventConsumer do
   @moduledoc false
   use Nostrum.Consumer
 
-  alias Nostrum.Api
   alias Enjoybot.EventConsumer.CommandHandler
+  alias Nostrum.Api
 
   def start_link do
     Consumer.start_link(__MODULE__)

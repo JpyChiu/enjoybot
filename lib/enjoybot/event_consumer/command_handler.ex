@@ -5,14 +5,14 @@ defmodule Enjoybot.EventConsumer.CommandHandler do
   @exist_commands ["!uptime", "!hello", "!help"]
 
   @spec handle_message(Nostrum.Struct.Message.t()) ::
-          {:error, :not_command | :unknown_command, Nostrum.Struct.Message.t()}
+          {:error, :not_command | :unknown_command, String.t()}
           | {:ok, binary, list(String.t())}
   def handle_message(msg) do
     [command | rest] = String.split(msg.content, " ")
 
     cond do
       not String.starts_with?(command, "!") ->
-        {:error, :not_command, msg}
+        {:error, :not_command, ""}
 
       command not in @exist_commands ->
         {:error, :unknown_command, Enum.join(@exist_commands, ", ")}
